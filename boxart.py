@@ -87,7 +87,7 @@ def main():
         if title_id:
             xmid = get_xmid_from_api(title_id)
             if xmid:
-                tbn_path = os.path.join(os.path.dirname(xbe_path), "default2.tbn")
+                tbn_path = os.path.join(os.path.dirname(xbe_path), "default.tbn")
                 if download_thumbnail(xmid, tbn_path):
                     count += 1
 
