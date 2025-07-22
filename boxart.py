@@ -62,20 +62,20 @@ def main():
     root_dir = dialog.browse(0, "Select Game Root Folder", "files")
 
     if not root_dir:
-        dialog.ok("XBMC4Xbox", "No folder selected.")
+        dialog.ok("cortanaCoverDownloader", "No folder selected.")
         return
 
     xbe_files = find_default_xbe_files(root_dir)
 
     if not xbe_files:
-        dialog.ok("XBMC4Xbox", "No default.xbe files found.")
+        dialog.ok("cortanaCoverDownloader", "No default.xbe files found.")
         return
 
     total = len(xbe_files)
     count = 0
 
     progress = xbmcgui.DialogProgress()
-    progress.create("Downloading Thumbnails", "Processing...")
+    progress.create("cortanaCoverDownloader", "Processing...")
 
     for index, xbe_path in enumerate(xbe_files):
         if progress.iscanceled():
@@ -87,7 +87,7 @@ def main():
         if title_id:
             xmid = get_xmid_from_api(title_id)
             if xmid:
-                tbn_path = os.path.join(os.path.dirname(xbe_path), "default.tbn")
+                tbn_path = os.path.join(os.path.dirname(xbe_path), "default2.tbn")
                 if download_thumbnail(xmid, tbn_path):
                     count += 1
 
@@ -95,7 +95,7 @@ def main():
         progress.update(percent, "Processing: {}".format(folder_name), "Downloaded: {}".format(count), "Remaining: {}".format(total - (index + 1)))
 
     progress.close()
-    dialog.ok("XBMC4Xbox", "Done!", "Thumbnails downloaded: {}".format(count))
+    dialog.ok("cortanaCoverDownloader", "Done!", "Thumbnails downloaded: {}".format(count))
 
 if __name__ == "__main__":
     main()
